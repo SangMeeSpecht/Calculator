@@ -12,22 +12,23 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
     
-    var firstTypedDigit = true
+    var noDigitsSelected = true
 
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         
-        if firstTypedDigit {
+        if noDigitsSelected {
             display.text! = digit
         } else {
             let currentDisplayText = display.text!
             display.text! = currentDisplayText + digit
         }
         
-        firstTypedDigit = false
+        noDigitsSelected = false
         
     }
 
+ 
     
 
 }
