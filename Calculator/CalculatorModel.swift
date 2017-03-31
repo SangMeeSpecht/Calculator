@@ -12,16 +12,28 @@ class CalculatorModel {
     
     private var accumulator = 0.0
     
+    private var operations = [
+        "π" : Operation.Constant(Double.pi),
+        "√" : Operation.UnaryOperation(sqrt)
+    ]
+    
+    private enum Operation {
+        case Constant(Double)
+        case UnaryOperation((Double) -> Double)
+    }
+    
     func setOperand(operand: Double) {
         accumulator = operand
     }
     
     func performOperation(symbol: String) {
-        switch symbol {
-        case "π": accumulator = Double.pi
-        case "√": accumulator = sqrt(accumulator)
-        default: break
+        if let operation = operations[symbol] {
+            switch operation {
+            case .Constant(let value): accumulator = value
+            case .UnaryOperation(let function): accumulator = function(accumulator)
+            }
         }
+        
     }
     
     var result: Double {
@@ -30,4 +42,4 @@ class CalculatorModel {
         }
     }
     
-}
+}   
