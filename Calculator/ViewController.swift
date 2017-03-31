@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet private weak var display: UILabel!
     
-    private var noDigitsSelected = true
+    private var userInMiddleOfTyping = false
     
     private var displayValue: Double {
         get {
@@ -31,25 +31,25 @@ class ViewController: UIViewController {
     private var model = CalculatorModel()
 
     @IBAction private func performOperation(_ sender: UIButton) {
-        noDigitsSelected = true
-        
         let mathematicalSymbol = sender.currentTitle
-        
-        if mathematicalSymbol == "π" {
-            displayValue = Double.pi
-        } else if mathematicalSymbol == "√" {
-            displayValue = sqrt(displayValue)
+
+        if userInMiddleOfTyping {
+            model.setOperand(operand: displayValue)
+            userInMiddleOfTyping = false
         }
+        
+        model.performOperation(symbol: mathematicalSymbol!)
+        displayValue = model.result
     }
     
     private func appendDigits(_ digit: String) {
-        if noDigitsSelected {
-            display.text! = digit
-        } else {
+        if userInMiddleOfTyping {
             display.text! += digit
+        } else {
+            display.text! = digit
         }
         
-        noDigitsSelected = false
+        userInMiddleOfTyping = true
     }
 }
 
