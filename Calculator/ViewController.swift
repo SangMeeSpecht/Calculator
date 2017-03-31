@@ -12,6 +12,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
     
     var noDigitsSelected = true
+    
+    var displayValue: Double {
+        get {
+            return Double(display.text!)!
+        }
+        set {
+            display.text = String(newValue)
+        }
+    }
 
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
@@ -25,7 +34,9 @@ class ViewController: UIViewController {
         let mathematicalSymbol = sender.currentTitle
         
         if mathematicalSymbol == "π" {
-            display.text = String(Double.pi)
+            displayValue = Double.pi
+        } else if mathematicalSymbol == "√" {
+            displayValue = sqrt(displayValue)
         }
     }
     
