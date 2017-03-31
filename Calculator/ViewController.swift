@@ -9,11 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var display: UILabel!
+    @IBOutlet private weak var display: UILabel!
     
-    var noDigitsSelected = true
+    private var noDigitsSelected = true
     
-    var displayValue: Double {
+    private var displayValue: Double {
         get {
             return Double(display.text!)!
         }
@@ -22,13 +22,15 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func touchDigit(_ sender: UIButton) {
+    @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
     
         appendDigits(digit)
     }
+    
+    private var model = CalculatorModel()
 
-    @IBAction func performOperation(_ sender: UIButton) {
+    @IBAction private func performOperation(_ sender: UIButton) {
         noDigitsSelected = true
         
         let mathematicalSymbol = sender.currentTitle
@@ -40,7 +42,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func appendDigits(_ digit: String) {
+    private func appendDigits(_ digit: String) {
         if noDigitsSelected {
             display.text! = digit
         } else {
