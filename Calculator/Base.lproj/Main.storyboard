@@ -152,6 +152,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.65150187869999998" green="0.85193924489999995" blue="0.84389866599999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="display" destination="iaF-Wc-X58" id="jU6-Uh-l5a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

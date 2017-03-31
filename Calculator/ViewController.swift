@@ -9,11 +9,26 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var display: UILabel!
+    
+    var firstTypedDigit = true
 
     @IBAction func touchDigit(_ sender: UIButton) {
-        var touchedDigit = sender.currentTitle!
-        print(touchedDigit)
+        let digit = sender.currentTitle!
+        
+        if firstTypedDigit {
+            display.text! = digit
+        } else {
+            let currentDisplayText = display.text!
+            display.text! = currentDisplayText + digit
+        }
+        
+        firstTypedDigit = false
+        
     }
+
+    
 
 }
 
