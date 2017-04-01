@@ -8,10 +8,6 @@
 
 import Foundation
 
-func multiply(factor1: Double, factor2: Double) -> Double {
-    return factor1 * factor2
-}
-
 class CalculatorModel {
     
     private var accumulator = 0.0
@@ -22,10 +18,18 @@ class CalculatorModel {
         }
     }
     
+    func setOperand(operand: Double) {
+        accumulator = operand
+    }
+    
     private var operations = [
         "π" : Operation.Constant(Double.pi),
         "√" : Operation.UnaryOperation(sqrt),
-        "×" : Operation.BinaryOperation(multiply),
+        "±" : Operation.UnaryOperation({ -$0 }),
+        "×" : Operation.BinaryOperation({ $0 * $1 }),
+        "÷" : Operation.BinaryOperation({ $0 / $1 }),
+        "+" : Operation.BinaryOperation({ $0 + $1 }),
+        "-" : Operation.BinaryOperation({ $0 - $1 }),
         "=" : Operation.Equals
     ]
     
@@ -34,10 +38,6 @@ class CalculatorModel {
         case UnaryOperation((Double) -> Double)
         case BinaryOperation((Double, Double) -> Double)
         case Equals
-    }
-    
-    func setOperand(operand: Double) {
-        accumulator = operand
     }
     
     func performOperation(symbol: String) {
@@ -65,7 +65,7 @@ class CalculatorModel {
     
     private var pending: PendingBinaryOperationInfo?
     
-    struct PendingBinaryOperationInfo {
+    private struct PendingBinaryOperationInfo {
         var binaryFunction: (Double, Double) -> Double
         var firstOperand: Double
     }
