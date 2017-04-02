@@ -47,6 +47,7 @@ class CalculatorModel {
         "x!": Operation.UnaryOperation(factorial),
         "x²": Operation.UnaryOperation({ $0 * $0 }),
         "x³": Operation.UnaryOperation({ $0 * $0 * $0 }),
+        "xª": Operation.BinaryOperation({ pow($0, $1) }),
         "1/x": Operation.UnaryOperation({ 1 / $0 }),
         "±" : Operation.UnaryOperation({ -$0 }),
         "×" : Operation.BinaryOperation({ $0 * $1 }),
@@ -62,7 +63,6 @@ class CalculatorModel {
         case BinaryOperation((Double, Double) -> Double)
         case Equals
     }
-    
     
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {
