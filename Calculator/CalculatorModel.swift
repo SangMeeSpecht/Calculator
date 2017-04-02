@@ -47,6 +47,7 @@ class CalculatorModel {
         "x!": Operation.UnaryOperation(factorial),
         "x²": Operation.UnaryOperation({ $0 * $0 }),
         "x³": Operation.UnaryOperation({ $0 * $0 * $0 }),
+        "1/x": Operation.UnaryOperation({ 1 / $0 }),
         "±" : Operation.UnaryOperation({ -$0 }),
         "×" : Operation.BinaryOperation({ $0 * $1 }),
         "÷" : Operation.BinaryOperation({ $0 / $1 }),
