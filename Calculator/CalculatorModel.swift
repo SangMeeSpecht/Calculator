@@ -45,6 +45,7 @@ class CalculatorModel {
         "π" : Operation.Constant(Double.pi),
         "√" : Operation.UnaryOperation(sqrt),
         "x!": Operation.UnaryOperation(factorial),
+        "x²": Operation.UnaryOperation({ $0 * $0 }),
         "±" : Operation.UnaryOperation({ -$0 }),
         "×" : Operation.BinaryOperation({ $0 * $1 }),
         "÷" : Operation.BinaryOperation({ $0 / $1 }),
