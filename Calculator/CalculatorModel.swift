@@ -8,6 +8,25 @@
 
 import Foundation
 
+private func factorial(number: Double) -> Double {
+    var currentProduct = number
+    var intNumber = Int(number)
+    var factor: Int {
+        get {
+            return Int(currentProduct)
+        }
+        set(newProduct) {
+            currentProduct = Double(newProduct)
+        }
+    }
+    
+    for num in (2...intNumber - 1).reversed() {
+        factor *= num
+    }
+    
+    return currentProduct
+}
+
 class CalculatorModel {
     
     private var accumulator = 0.0
@@ -25,6 +44,7 @@ class CalculatorModel {
     private var operations = [
         "π" : Operation.Constant(Double.pi),
         "√" : Operation.UnaryOperation(sqrt),
+        "x!": Operation.UnaryOperation(factorial),
         "±" : Operation.UnaryOperation({ -$0 }),
         "×" : Operation.BinaryOperation({ $0 * $1 }),
         "÷" : Operation.BinaryOperation({ $0 / $1 }),
@@ -39,6 +59,7 @@ class CalculatorModel {
         case BinaryOperation((Double, Double) -> Double)
         case Equals
     }
+    
     
     func performOperation(symbol: String) {
         if let operation = operations[symbol] {

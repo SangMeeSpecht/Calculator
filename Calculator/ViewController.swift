@@ -40,8 +40,12 @@ class ViewController: UIViewController {
             decimalUsed = false
         }
         
-        model.performOperation(symbol: mathematicalSymbol)
-        displayValue = model.result
+        if mathematicalSymbol == "x!" && !isDoubleAnInteger(num: displayValue) {
+            display.text = "Not a number"
+        } else {
+            model.performOperation(symbol: mathematicalSymbol)
+            displayValue = model.result
+        }
     }
     
     @IBAction func clearDisplay(_ sender: UIButton) {
@@ -62,6 +66,9 @@ class ViewController: UIViewController {
         }
     }
     
+    private func isDoubleAnInteger(num: Double) -> Bool {
+        return num.truncatingRemainder(dividingBy: 1.0) == 0.0
+    }
     
 }
 
