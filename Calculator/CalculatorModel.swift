@@ -28,17 +28,15 @@ private func factorial(number: Double) -> Double {
 }
 
 class CalculatorModel {
-    
     private var accumulator = 0.0
+    var description = ""
+    var isPartialResult = true
     
     var result: Double {
         get {
             return accumulator
         }
     }
-    
-    var description = ""
-    var isPartialResult = true
     
     func setOperand(operand: Double) {
         accumulator = operand
@@ -96,13 +94,29 @@ class CalculatorModel {
         }
     }
     
-    func resetDescription() {
+    func resetCalculator() {
+        resetPending()
+        resetAccumulator()
+        resetDescription()
+    }
+    
+    private func resetPending() {
+        pending = nil
+    }
+    
+    private func resetAccumulator() {
+        accumulator = 0.0
+    }
+    
+    private func resetDescription() {
         description = ""
     }
     
     private func resetIsPartialResult() {
         isPartialResult = true
     }
+    
+    private var pending: PendingBinaryOperationInfo?
     
     private func executePendingBinaryOperation() {
         if pending != nil {
@@ -111,8 +125,6 @@ class CalculatorModel {
             pending = nil
         }
     }
-    
-    private var pending: PendingBinaryOperationInfo?
     
     private struct PendingBinaryOperationInfo {
         var binaryFunction: (Double, Double) -> Double
