@@ -49,7 +49,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clearDisplay(_ sender: UIButton) {
-        displayValue = 0
+        userInMiddleOfTyping = false
+        display.text = "0"
         model.setOperand(operand: displayValue)
     }
     

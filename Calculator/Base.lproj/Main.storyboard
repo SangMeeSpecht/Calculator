@@ -254,8 +254,7 @@
                                     <color key="titleColor" red="1" green="0.28438648950000001" blue="0.1429069945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="clearDisplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2PG-5t-trb"/>
-                                    <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XlR-gS-ejw"/>
+                                    <action selector="clearDisplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gd8-8j-luT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXz-AC-9OU">

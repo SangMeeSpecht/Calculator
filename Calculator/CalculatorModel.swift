@@ -37,8 +37,11 @@ class CalculatorModel {
         }
     }
     
+    var description = ""
+    
     func setOperand(operand: Double) {
         accumulator = operand
+        description += String(operand)
     }
     
     private var operations = [
@@ -65,6 +68,10 @@ class CalculatorModel {
     }
     
     func performOperation(symbol: String) {
+        if symbol != "=" {
+            description += symbol
+        }
+        
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let value):
@@ -76,6 +83,8 @@ class CalculatorModel {
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .Equals:
                 executePendingBinaryOperation()
+                print(description)
+                description = ""
             }
         }
     }
