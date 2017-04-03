@@ -38,6 +38,7 @@ class CalculatorModel {
     }
     
     var description = ""
+    var isPartialResult = true
     
     func setOperand(operand: Double) {
         accumulator = operand
@@ -68,9 +69,7 @@ class CalculatorModel {
     }
     
     func performOperation(symbol: String) {
-        if symbol != "=" {
             description += symbol
-        }
         
         if let operation = operations[symbol] {
             switch operation {
@@ -83,14 +82,31 @@ class CalculatorModel {
                 pending = PendingBinaryOperationInfo(binaryFunction: function, firstOperand: accumulator)
             case .Equals:
                 executePendingBinaryOperation()
-                print(description)
-                description = ""
+                isPartialResult = false
             }
         }
     }
     
+    func renderDescription() -> String {
+        if isPartialResult {
+            return description + "..."
+        }
+        else {
+            return description
+        }
+    }
+    
+    func resetDescription() {
+        description = ""
+    }
+    
+    private func resetIsPartialResult() {
+        isPartialResult = true
+    }
+    
     private func executePendingBinaryOperation() {
         if pending != nil {
+            resetIsPartialResult()
             accumulator = pending!.binaryFunction(pending!.firstOperand, accumulator)
             pending = nil
         }

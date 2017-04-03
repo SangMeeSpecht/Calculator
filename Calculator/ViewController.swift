@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet private weak var display: UILabel!
+    @IBOutlet private weak var renderEquation: UILabel!
     private var userInMiddleOfTyping = false
     private var decimalUsed = false
     private var model = CalculatorModel()
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
 
     @IBAction private func performOperation(_ sender: UIButton) {
         let mathematicalSymbol = sender.currentTitle!
-
+        
         if userInMiddleOfTyping {
             model.setOperand(operand: displayValue)
             userInMiddleOfTyping = false
@@ -45,6 +46,7 @@ class ViewController: UIViewController {
         } else {
             model.performOperation(symbol: mathematicalSymbol)
             displayValue = model.result
+            renderEquation.text = model.renderDescription()
         }
     }
     
@@ -52,6 +54,8 @@ class ViewController: UIViewController {
         userInMiddleOfTyping = false
         display.text = "0"
         model.setOperand(operand: displayValue)
+        model.resetDescription()
+        renderEquation.text = ""
     }
     
     private func appendDigits(_ digit: String) {
