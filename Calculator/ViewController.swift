@@ -11,8 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet private weak var display: UILabel!
     @IBOutlet private weak var renderEquation: UILabel!
-    private var userInMiddleOfTyping = false
+    
     private var model = CalculatorModel()
+    
+    private var userInMiddleOfTyping = false
     private var decimal = "."
     
     private var displayValue: Double {
@@ -28,7 +30,6 @@ class ViewController: UIViewController {
         let digit = sender.currentTitle!
     
         appendDigits(digit)
-        
         userInMiddleOfTyping = true
     }
 
@@ -58,7 +59,7 @@ class ViewController: UIViewController {
     
     private func appendDigits(_ digit: String) {
         if userInMiddleOfTyping {
-            if digit == decimal && display.text!.characters.contains(Character(decimal)) {
+            if numberContainsDecimal(digit: digit) {
 //                don't do anything
             } else {
                 display.text! += digit
@@ -66,6 +67,10 @@ class ViewController: UIViewController {
         } else {
             display.text! = digit
         }
+    }
+    
+    private func numberContainsDecimal(digit: String) -> Bool {
+        return digit == decimal && display.text!.characters.contains(Character(decimal))
     }
     
     private func isDoubleAnInteger(num: Double) -> Bool {
