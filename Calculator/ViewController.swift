@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     
     @IBAction func clearDisplay(_ sender: UIButton) {
         display.text = "0"
-        renderEquation.text = ""
+        renderEquation.text = " "
         model.resetCalculator()
         userInMiddleOfTyping = false
     }
