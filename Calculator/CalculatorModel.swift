@@ -129,6 +129,8 @@ class CalculatorModel {
                 for op in arrayOfOps {
                     if let operand = op as? Double {
                         setOperand(operand: operand)
+                    } else if let variableOperand = op as? String {
+                        setOperand(variableName: variableOperand)
                     } else if let operation = op as? String {
                         performOperation(symbol: operation)
                     }
