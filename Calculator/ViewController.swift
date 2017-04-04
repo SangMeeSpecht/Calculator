@@ -67,6 +67,7 @@ class ViewController: UIViewController {
         } else {
             display.text! = digit
         }
+        
     }
     
     private func numberContainsDecimal(digit: String) -> Bool {

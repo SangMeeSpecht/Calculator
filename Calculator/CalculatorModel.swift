@@ -29,8 +29,10 @@ private func factorial(number: Double) -> Double {
 
 class CalculatorModel {
     private var accumulator = 0.0
-    var description = ""
-    var isPartialResult = true
+    private var description = ""
+    private var isPartialResult = true
+    private var internalProgram = [AnyObject]()
+    var variableValues = [String: Double]()
     
     var result: Double {
         get {
@@ -51,7 +53,17 @@ class CalculatorModel {
     
     func setOperand(operand: Double) {
         accumulator = operand
+        internalProgram.append(operand as AnyObject)
+        
         description += String(operand)
+    }
+    
+    func setOperand(variableName: String) {
+        if !variableValues.isEmpty {
+            accumulator = variableValues[variableName]!
+        } else {
+            accumulator = 0.0
+        }
     }
     
     private var operations = [
@@ -78,7 +90,9 @@ class CalculatorModel {
     }
     
     func performOperation(symbol: String) {
-            description += symbol
+        internalProgram.append(symbol as AnyObject)
+        
+        description += symbol
         
         if let operation = operations[symbol] {
             switch operation {
@@ -100,6 +114,27 @@ class CalculatorModel {
         resetPending()
         resetAccumulator()
         resetDescription()
+        internalProgram.removeAll()
+    }
+    
+    typealias PropertyList = AnyObject
+    
+    var program: PropertyList {
+        get {
+            return internalProgram as CalculatorModel.PropertyList
+        }
+        set {
+            resetCalculator()
+            if let arrayOfOps = newValue as? [AnyObject] {
+                for op in arrayOfOps {
+                    if let operand = op as? Double {
+                        setOperand(operand: operand)
+                    } else if let operation = op as? String {
+                        performOperation(symbol: operation)
+                    }
+                }
+            }
+        }
     }
     
     private func resetPending() {
