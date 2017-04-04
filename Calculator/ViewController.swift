@@ -57,6 +57,13 @@ class ViewController: UIViewController {
         userInMiddleOfTyping = false
     }
     
+    @IBAction func saveValue() {
+    }
+    
+    @IBAction func getSavedValue() {
+    }
+    
+    
     private func appendDigits(_ digit: String) {
         if userInMiddleOfTyping {
             if numberContainsDecimal(digit: digit) {

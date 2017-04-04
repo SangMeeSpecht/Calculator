@@ -42,17 +42,44 @@
                                                 <color key="textColor" red="1" green="0.28438648950000001" blue="0.1429069945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ3-1v-BKg">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="LFU-4j-jQZ">
                                                 <rect key="frame" x="0.0" y="139.5" width="343" height="70"/>
-                                                <color key="backgroundColor" red="0.069205258559999996" green="0.051988813219999999" blue="0.32867958660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                <state key="normal" title="Clear">
-                                                    <color key="titleColor" red="1" green="0.28438648950000001" blue="0.1429069945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="clearDisplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gd8-8j-luT"/>
-                                                </connections>
-                                            </button>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ3-1v-BKg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="113.5" height="70"/>
+                                                        <color key="backgroundColor" red="0.069205258559999996" green="0.051988813219999999" blue="0.32867958660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <state key="normal" title="Clear">
+                                                            <color key="titleColor" red="1" green="0.28438648950000001" blue="0.1429069945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="clearDisplay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gd8-8j-luT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkI-9B-WZn">
+                                                        <rect key="frame" x="114.5" y="0.0" width="114" height="70"/>
+                                                        <color key="backgroundColor" red="0.069205258559999996" green="0.051988813219999999" blue="0.32867958660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <state key="normal" title="→M">
+                                                            <color key="titleColor" red="1" green="0.28438648950000001" blue="0.1429069945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="saveValue" destination="BYZ-38-t0r" eventType="touchUpInside" id="gK4-eo-BOy"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYy-JT-2AZ">
+                                                        <rect key="frame" x="229.5" y="0.0" width="113.5" height="70"/>
+                                                        <color key="backgroundColor" red="0.069205258559999996" green="0.051988813219999999" blue="0.32867958660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <state key="normal" title="M">
+                                                            <color key="titleColor" red="1" green="0.28438648950000001" blue="0.1429069945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="getSavedValue" destination="BYZ-38-t0r" eventType="touchUpInside" id="hUd-m2-d3L"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="7sd-sf-7qc">
@@ -359,7 +386,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.65150187869999998" green="0.85193924489999995" blue="0.84389866599999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ixj-SN-QJq" secondAttribute="bottom" constant="10" id="j6w-GZ-U1l"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ixj-SN-QJq" secondAttribute="bottom" constant="10" id="nFm-vb-9Y5"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ixj-SN-QJq" secondAttribute="leading" id="sHe-Zc-GbG"/>
                             <constraint firstItem="iaF-Wc-X58" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="um9-8o-Yvy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ixj-SN-QJq" secondAttribute="trailing" id="ydv-2B-rYv"/>
@@ -372,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="670" y="-391"/>
+            <point key="canvasLocation" x="638" y="-429"/>
         </scene>
     </scenes>
 </document>
