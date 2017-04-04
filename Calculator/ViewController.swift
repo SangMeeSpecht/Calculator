@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet private weak var display: UILabel!
-    @IBOutlet private weak var renderEquation: UILabel!
+    @IBOutlet weak var renderExpression: UILabel!
     
     private var model = CalculatorModel()
     
@@ -46,13 +46,13 @@ class ViewController: UIViewController {
         } else {
             model.performOperation(symbol: mathematicalSymbol)
             displayValue = model.result
-            renderEquation.text = model.renderDescription()
+            renderExpression.text = model.renderDescription
         }
     }
     
-    @IBAction func clearDisplay(_ sender: UIButton) {
+    @IBAction private func clearDisplay(_ sender: UIButton) {
         display.text = "0"
-        renderEquation.text = " "
+        renderExpression.text = " "
         model.resetCalculator()
         userInMiddleOfTyping = false
     }

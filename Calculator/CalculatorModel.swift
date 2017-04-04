@@ -38,6 +38,17 @@ class CalculatorModel {
         }
     }
     
+    var renderDescription: String {
+        get {
+            if isPartialResult {
+                return description + "..."
+            }
+            else {
+                return description
+            }
+        }
+    }
+    
     func setOperand(operand: Double) {
         accumulator = operand
         description += String(operand)
@@ -82,15 +93,6 @@ class CalculatorModel {
                 executePendingBinaryOperation()
                 isPartialResult = false
             }
-        }
-    }
-    
-    func renderDescription() -> String {
-        if isPartialResult {
-            return description + "..."
-        }
-        else {
-            return description
         }
     }
     

@@ -367,7 +367,7 @@
                     </view>
                     <connections>
                         <outlet property="display" destination="iaF-Wc-X58" id="jU6-Uh-l5a"/>
-                        <outlet property="renderEquation" destination="4dI-fP-qf7" id="UbY-eB-QcR"/>
+                        <outlet property="renderExpression" destination="4dI-fP-qf7" id="S8Q-gc-dfv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
