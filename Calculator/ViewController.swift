@@ -28,7 +28,6 @@ class ViewController: UIViewController {
 
     @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
-    
         appendDigits(digit)
         userInMiddleOfTyping = true
     }
@@ -45,7 +44,7 @@ class ViewController: UIViewController {
             display.text = "Not a number"
         } else {
             model.performOperation(symbol: mathematicalSymbol)
-            displayValue = model.result
+            displayValue = model.result!
             renderExpression.text = model.renderDescription
         }
     }
@@ -57,14 +56,25 @@ class ViewController: UIViewController {
         userInMiddleOfTyping = false
     }
     
-//    var savedProgram: CalculatorModel.PropertyList?
+    var savedProgram: CalculatorModel.PropertyList?
     
+//    ->M
     @IBAction func saveValue() {
-
+        model.variableValues["M"] = displayValue
+        savedProgram = model.program
+        if savedProgram != nil {
+            model.program = savedProgram!
+            displayValue = model.result!
+        }
     }
     
+//    M
     @IBAction func getSavedValue() {
-
+        model.setOperand(variableName: "M")
+        if savedProgram != nil {
+            model.program = savedProgram!
+            displayValue = model.result!
+        }
     }
     
     private func appendDigits(_ digit: String) {

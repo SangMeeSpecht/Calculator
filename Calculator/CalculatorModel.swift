@@ -34,9 +34,16 @@ class CalculatorModel {
     private var internalProgram = [AnyObject]()
     var variableValues = [String: Double]()
     
-    var result: Double {
+    var result: Double? {
         get {
             return accumulator
+        }
+        set {
+            if newValue != nil {
+                accumulator = newValue!
+            } else {
+                accumulator = 0.0
+            }
         }
     }
     
@@ -53,20 +60,14 @@ class CalculatorModel {
     
     func setOperand(operand: Double) {
         accumulator = operand
-        internalProgram.append(operand as AnyObject)
         description += String(operand)
+        internalProgram.append(operand as AnyObject)
     }
     
     func setOperand(variableName: String) {
-        if !variableValues.isEmpty {
-            accumulator = variableValues[variableName]!
-            description += String(variableValues[variableName]!)
-            internalProgram.append(variableValues[variableName]! as AnyObject)
-        } else {
-            accumulator = 0.0
-            description += "0.0"
-            internalProgram.append(0.0 as AnyObject)
-        }
+        result = variableValues[variableName]
+        description += String(variableName)
+        internalProgram.append(variableName as AnyObject)
     }
     
     private var operations = [
@@ -130,7 +131,9 @@ class CalculatorModel {
             resetCalculator()
             if let arrayOfOps = newValue as? [AnyObject] {
                 for op in arrayOfOps {
-                    if let operand = op as? Double {
+                    if variableValues[String(describing: op)] != nil {
+                        setOperand(variableName: op as! String)
+                    } else if let operand = op as? Double {
                         setOperand(operand: operand)
                     } else if let operation = op as? String {
                         performOperation(symbol: operation)
