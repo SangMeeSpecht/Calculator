@@ -54,6 +54,7 @@ class ViewController: UIViewController {
         renderExpression.text = " "
         model.resetCalculator()
         userInMiddleOfTyping = false
+        savedProgram = nil
     }
     
     var savedProgram: CalculatorModel.PropertyList?
@@ -62,15 +63,16 @@ class ViewController: UIViewController {
     @IBAction func saveValue() {
         model.variableValues["M"] = displayValue
         savedProgram = model.program
-        if savedProgram != nil {
-            model.program = savedProgram!
-            displayValue = model.result!
-        }
+        uploadSavedProgram()
     }
     
 //    M
     @IBAction func getSavedValue() {
         model.setOperand(variableName: "M")
+        uploadSavedProgram()
+    }
+    
+    private func uploadSavedProgram() {
         if savedProgram != nil {
             model.program = savedProgram!
             displayValue = model.result!

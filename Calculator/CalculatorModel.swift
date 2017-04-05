@@ -119,6 +119,7 @@ class CalculatorModel {
         resetAccumulator()
         resetDescription()
         internalProgram.removeAll()
+        variableValues.removeAll()
     }
     
     typealias PropertyList = AnyObject
@@ -128,7 +129,11 @@ class CalculatorModel {
             return internalProgram as CalculatorModel.PropertyList
         }
         set {
-            resetCalculator()
+            resetPending()
+            resetAccumulator()
+            resetDescription()
+            internalProgram.removeAll()
+            
             if let arrayOfOps = newValue as? [AnyObject] {
                 for op in arrayOfOps {
                     if variableValues[String(describing: op)] != nil {
