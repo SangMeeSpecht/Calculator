@@ -54,15 +54,18 @@ class CalculatorModel {
     func setOperand(operand: Double) {
         accumulator = operand
         internalProgram.append(operand as AnyObject)
-        
         description += String(operand)
     }
     
     func setOperand(variableName: String) {
         if !variableValues.isEmpty {
             accumulator = variableValues[variableName]!
+            description += String(variableValues[variableName]!)
+            internalProgram.append(variableValues[variableName]! as AnyObject)
         } else {
             accumulator = 0.0
+            description += "0.0"
+            internalProgram.append(0.0 as AnyObject)
         }
     }
     
@@ -129,8 +132,6 @@ class CalculatorModel {
                 for op in arrayOfOps {
                     if let operand = op as? Double {
                         setOperand(operand: operand)
-                    } else if let variableOperand = op as? String {
-                        setOperand(variableName: variableOperand)
                     } else if let operation = op as? String {
                         performOperation(symbol: operation)
                     }

@@ -57,12 +57,15 @@ class ViewController: UIViewController {
         userInMiddleOfTyping = false
     }
     
+//    var savedProgram: CalculatorModel.PropertyList?
+    
     @IBAction func saveValue() {
+
     }
     
     @IBAction func getSavedValue() {
+
     }
-    
     
     private func appendDigits(_ digit: String) {
         if userInMiddleOfTyping {
