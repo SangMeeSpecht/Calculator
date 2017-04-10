@@ -90,15 +90,12 @@ class ViewController: UIViewController {
     
     private func appendDigits(_ digit: String) {
         if userInMiddleOfTyping {
-            if numberContainsDecimal(digit: digit) {
-//                don't do anything
-            } else {
+            if !numberContainsDecimal(digit: digit) {
                 display.text! += digit
             }
         } else {
             display.text! = digit
         }
-        
     }
     
     private func numberContainsDecimal(digit: String) -> Bool {
