@@ -107,13 +107,16 @@ class CalculatorModel {
 //        description += symbol
         
         if symbol == "√" {
-            for (index, element) in descriptionCollection.enumerated() {
-                if element == "=" {
-                    descriptionCollection.insert(")", at: index)
-                    descriptionCollection.insert("(", at: 0)
-                    descriptionCollection.insert("√", at: 0)
-                }
+            if descriptionCollection.contains("=") {
+                descriptionCollection.insert(")", at: descriptionCollection.index(of: "=")!)
+                descriptionCollection.insert("√(", at: 0)
+            } else if !descriptionCollection.contains("=") {
+                descriptionCollection.insert("√(", at: descriptionCollection.count - 1)
+                descriptionCollection.append(")")
             }
+        } else if symbol == "=" && (descriptionCollection.filter{$0 == "="}).count >= 1 {
+            descriptionCollection = descriptionCollection.filter{$0 != "="}
+            descriptionCollection.append(symbol)
         } else {
             descriptionCollection.append(symbol)
         }
@@ -138,8 +141,10 @@ class CalculatorModel {
         resetPending()
         resetAccumulator()
         resetDescription()
+        resetIsPartialResult()
         internalProgram.removeAll()
         variableValues.removeAll()
+        descriptionCollection.removeAll()
     }
     
     typealias PropertyList = AnyObject
@@ -152,7 +157,9 @@ class CalculatorModel {
             resetPending()
             resetAccumulator()
             resetDescription()
+            resetIsPartialResult()
             internalProgram.removeAll()
+            descriptionCollection.removeAll()
             
             if let arrayOfOps = newValue as? [AnyObject] {
                 for op in arrayOfOps {
