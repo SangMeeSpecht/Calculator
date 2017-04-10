@@ -74,6 +74,17 @@ class ViewController: UIViewController {
         displayValue = model.result!
     }
     
+    @IBAction func undo() {
+        if userInMiddleOfTyping && !display.text!.isEmpty {
+            display.text! = display.text!.substring(to: display.text!.index(before: display.text!.endIndex))
+        }
+    }
+    
+//    var name: String = "Dolphin"
+//    var truncated = name.substring(to: name.index(before: name.endIndex))
+//    print(name)      // "Dolphin"
+//    print(truncated) // "Dolphi"
+    
     private func uploadSavedProgram() {
         model.program = model.program
         displayValue = model.result!
