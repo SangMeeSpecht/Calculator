@@ -35,6 +35,7 @@ class CalculatorModel {
     var variableValues = [String: Double]()
     
     var descriptionCollection = [String]()
+    private let binaryOps = ["+", "-", "×", "÷"]
     
     
     var result: Double? {
@@ -65,8 +66,8 @@ class CalculatorModel {
     
     func setOperand(operand: Double) {
         accumulator = operand
-//        description += String(operand)
-        if descriptionCollection.last == "√" || descriptionCollection.last == "=" {
+        
+        if noPreceedingOperator() {
             descriptionCollection.removeAll()
             descriptionCollection.append(String(operand))
         } else {
@@ -78,7 +79,6 @@ class CalculatorModel {
     
     func setOperand(variableName: String) {
         result = variableValues[variableName]
-//        description += String(variableName)
         descriptionCollection.append(String(variableName))
         internalProgram.append(variableName as AnyObject)
     }
@@ -106,30 +106,10 @@ class CalculatorModel {
         case Equals
     }
     
-    private let binaryOps = ["+", "-", "×", "÷"]
-    
     func performOperation(symbol: String) {
         internalProgram.append(symbol as AnyObject)
         
-//        description += symbol
-        
-        if symbol == "√" {
-            if descriptionCollection.contains("=") {
-                descriptionCollection.insert(")", at: descriptionCollection.index(of: "=")!)
-                descriptionCollection.insert("√(", at: 0)
-            } else if !descriptionCollection.contains("=") {
-                descriptionCollection.insert("√(", at: descriptionCollection.count - 1)
-                descriptionCollection.append(")")
-            }
-        } else if symbol == "=" && (descriptionCollection.filter{$0 == "="}).count >= 1 {
-            descriptionCollection = descriptionCollection.filter{$0 != "="}
-            descriptionCollection.append(symbol)
-        } else if symbol == "=" && binaryOps.contains(descriptionCollection.last!) {
-            descriptionCollection.append(String(accumulator))
-            descriptionCollection.append(symbol)
-        } else {
-            descriptionCollection.append(symbol)
-        }
+        formatDescription(symbol: symbol)
     
         if let operation = operations[symbol] {
             switch operation {
@@ -153,8 +133,8 @@ class CalculatorModel {
         resetDescription()
         resetIsPartialResult()
         internalProgram.removeAll()
-        variableValues.removeAll()
         descriptionCollection.removeAll()
+        variableValues.removeAll()
     }
     
     typealias PropertyList = AnyObject
@@ -214,6 +194,38 @@ class CalculatorModel {
     private struct PendingBinaryOperationInfo {
         var binaryFunction: (Double, Double) -> Double
         var firstOperand: Double
+    }
+    
+    private func formatDescription(symbol: String) {
+        if symbol == "√" {
+            if descriptionCollection.contains("=") {
+                descriptionCollection.insert(")", at: descriptionCollection.index(of: "=")!)
+                descriptionCollection.insert("√(", at: 0)
+            } else if !descriptionCollection.contains("=") {
+                descriptionCollection.insert("√(", at: descriptionCollection.count - 1)
+                descriptionCollection.append(")")
+            }
+        } else if multipleEqualSymbols(symbol: symbol) {
+            descriptionCollection = descriptionCollection.filter{$0 != "="}
+            descriptionCollection.append(symbol)
+        } else if noOperandEntered(symbol: symbol) {
+            descriptionCollection.append(String(accumulator))
+            descriptionCollection.append(symbol)
+        } else {
+            descriptionCollection.append(symbol)
+        }
+    }
+    
+    private func noOperandEntered(symbol: String) -> Bool {
+        return symbol == "=" && binaryOps.contains(descriptionCollection.last!)
+    }
+    
+    private func multipleEqualSymbols(symbol: String) -> Bool {
+        return symbol == "=" && (descriptionCollection.filter{$0 == "="}).count >= 1
+    }
+
+    private func noPreceedingOperator() -> Bool {
+        return descriptionCollection.last == "√" || descriptionCollection.last == "="
     }
     
 }

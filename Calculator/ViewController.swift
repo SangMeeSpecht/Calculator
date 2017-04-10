@@ -41,7 +41,7 @@ class ViewController: UIViewController {
             renderExpression.text = model.renderDescription
         }
         
-        if mathematicalSymbol == "x!" && !isDoubleAnInteger(num: displayValue) {
+        if invalidFactorialNumber(mathematicalSymbol: mathematicalSymbol) {
             display.text = "Not a number"
         } else {
             model.performOperation(symbol: mathematicalSymbol)
@@ -63,7 +63,6 @@ class ViewController: UIViewController {
 //    ->M
     @IBAction func saveValue() {
         model.variableValues["M"] = displayValue
-//        savedProgram = model.program
         userInMiddleOfTyping = false
         uploadSavedProgram()
     }
@@ -71,14 +70,13 @@ class ViewController: UIViewController {
 //    M
     @IBAction func getSavedValue() {
         model.setOperand(variableName: "M")
-        uploadSavedProgram()
+        userInMiddleOfTyping = false
+        displayValue = model.result!
     }
     
     private func uploadSavedProgram() {
-//        if savedProgram != nil {
-            model.program = model.program
-            displayValue = model.result!
-//        }
+        model.program = model.program
+        displayValue = model.result!
     }
     
     private func appendDigits(_ digit: String) {
@@ -100,6 +98,10 @@ class ViewController: UIViewController {
     
     private func isDoubleAnInteger(num: Double) -> Bool {
         return num.truncatingRemainder(dividingBy: 1.0) == 0.0
+    }
+    
+    private func invalidFactorialNumber(mathematicalSymbol: String) -> Bool {
+        return mathematicalSymbol == "x!" && !isDoubleAnInteger(num: displayValue)
     }
     
 }
