@@ -165,6 +165,10 @@ class CalculatorModel {
         }
     }
     
+    func undoLastOperation() {
+        internalProgram.removeLast()
+    }
+    
     private func resetPending() {
         pending = nil
     }

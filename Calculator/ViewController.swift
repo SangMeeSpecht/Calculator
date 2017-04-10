@@ -77,13 +77,11 @@ class ViewController: UIViewController {
     @IBAction func undo() {
         if userInMiddleOfTyping && !display.text!.isEmpty {
             display.text! = display.text!.substring(to: display.text!.index(before: display.text!.endIndex))
+        } else if !display.text!.isEmpty {
+            model.undoLastOperation()
+            model.program = model.program
         }
     }
-    
-//    var name: String = "Dolphin"
-//    var truncated = name.substring(to: name.index(before: name.endIndex))
-//    print(name)      // "Dolphin"
-//    print(truncated) // "Dolphi"
     
     private func uploadSavedProgram() {
         model.program = model.program
