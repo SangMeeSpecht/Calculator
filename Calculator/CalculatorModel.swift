@@ -34,6 +34,9 @@ class CalculatorModel {
     private var internalProgram = [AnyObject]()
     var variableValues = [String: Double]()
     
+    var descriptionCollection = [String]()
+    
+    
     var result: Double? {
         get {
             return accumulator
@@ -50,9 +53,11 @@ class CalculatorModel {
     var renderDescription: String {
         get {
             if isPartialResult {
+                description = String(descriptionCollection.joined())
                 return description + "..."
             }
             else {
+                description = String(descriptionCollection.joined())
                 return description
             }
         }
@@ -60,13 +65,16 @@ class CalculatorModel {
     
     func setOperand(operand: Double) {
         accumulator = operand
-        description += String(operand)
+//        description += String(operand)
+        descriptionCollection.append(String(operand))
+        
         internalProgram.append(operand as AnyObject)
     }
     
     func setOperand(variableName: String) {
         result = variableValues[variableName]
-        description += String(variableName)
+//        description += String(variableName)
+        descriptionCollection.append(String(variableName))
         internalProgram.append(variableName as AnyObject)
     }
     
@@ -96,8 +104,20 @@ class CalculatorModel {
     func performOperation(symbol: String) {
         internalProgram.append(symbol as AnyObject)
         
-        description += symbol
+//        description += symbol
         
+        if symbol == "√" {
+            for (index, element) in descriptionCollection.enumerated() {
+                if element == "=" {
+                    descriptionCollection.insert(")", at: index)
+                    descriptionCollection.insert("(", at: 0)
+                    descriptionCollection.insert("√", at: 0)
+                }
+            }
+        } else {
+            descriptionCollection.append(symbol)
+        }
+    
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let value):
