@@ -201,7 +201,7 @@ class CalculatorModel {
             if descriptionCollection.contains("=") {
                 descriptionCollection.insert(")", at: descriptionCollection.index(of: "=")!)
                 descriptionCollection.insert("√(", at: 0)
-            } else if !descriptionCollection.contains("=") {
+            } else {
                 descriptionCollection.insert("√(", at: descriptionCollection.count - 1)
                 descriptionCollection.append(")")
             }
