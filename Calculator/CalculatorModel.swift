@@ -66,7 +66,12 @@ class CalculatorModel {
     func setOperand(operand: Double) {
         accumulator = operand
 //        description += String(operand)
-        descriptionCollection.append(String(operand))
+        if descriptionCollection.last == "√" || descriptionCollection.last == "=" {
+            descriptionCollection.removeAll()
+            descriptionCollection.append(String(operand))
+        } else {
+            descriptionCollection.append(String(operand))
+        }
         
         internalProgram.append(operand as AnyObject)
     }
@@ -101,6 +106,8 @@ class CalculatorModel {
         case Equals
     }
     
+    private let binaryOps = ["+", "-", "×", "÷"]
+    
     func performOperation(symbol: String) {
         internalProgram.append(symbol as AnyObject)
         
@@ -116,6 +123,9 @@ class CalculatorModel {
             }
         } else if symbol == "=" && (descriptionCollection.filter{$0 == "="}).count >= 1 {
             descriptionCollection = descriptionCollection.filter{$0 != "="}
+            descriptionCollection.append(symbol)
+        } else if symbol == "=" && binaryOps.contains(descriptionCollection.last!) {
+            descriptionCollection.append(String(accumulator))
             descriptionCollection.append(symbol)
         } else {
             descriptionCollection.append(symbol)
