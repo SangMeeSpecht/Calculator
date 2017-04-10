@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         if userInMiddleOfTyping {
             model.setOperand(operand: displayValue)
             userInMiddleOfTyping = false
+            renderExpression.text = model.renderDescription
         }
         
         if mathematicalSymbol == "x!" && !isDoubleAnInteger(num: displayValue) {
@@ -62,7 +63,8 @@ class ViewController: UIViewController {
 //    ->M
     @IBAction func saveValue() {
         model.variableValues["M"] = displayValue
-        savedProgram = model.program
+//        savedProgram = model.program
+        userInMiddleOfTyping = false
         uploadSavedProgram()
     }
     
@@ -73,10 +75,10 @@ class ViewController: UIViewController {
     }
     
     private func uploadSavedProgram() {
-        if savedProgram != nil {
-            model.program = savedProgram!
+//        if savedProgram != nil {
+            model.program = model.program
             displayValue = model.result!
-        }
+//        }
     }
     
     private func appendDigits(_ digit: String) {
