@@ -52,15 +52,13 @@ class CalculatorModel {
     }
     
     var renderDescription: String {
-        get {
-            if isPartialResult {
-                description = String(descriptionCollection.joined())
-                return description + "..."
-            }
-            else {
-                description = String(descriptionCollection.joined())
-                return description
-            }
+        if isPartialResult {
+            description = String(descriptionCollection.joined())
+            return description + "..."
+        }
+        else {
+            description = String(descriptionCollection.joined())
+            return description
         }
     }
     
