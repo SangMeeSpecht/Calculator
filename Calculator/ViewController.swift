@@ -55,10 +55,7 @@ class ViewController: UIViewController {
         renderExpression.text = " "
         model.resetCalculator()
         userInMiddleOfTyping = false
-        savedProgram = nil
     }
-    
-    var savedProgram: CalculatorModel.PropertyList?
     
 //    ->M
     @IBAction func saveValue() {
