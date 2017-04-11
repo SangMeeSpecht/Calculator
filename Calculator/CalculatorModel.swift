@@ -43,11 +43,7 @@ class CalculatorModel {
             return accumulator
         }
         set {
-            if newValue != nil {
-                accumulator = newValue!
-            } else {
-                resetAccumulator()
-            }
+            accumulator = newValue ?? 0.0
         }
     }
     
