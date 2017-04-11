@@ -46,7 +46,7 @@ class CalculatorModel {
             if newValue != nil {
                 accumulator = newValue!
             } else {
-                accumulator = 0.0
+                resetAccumulator()
             }
         }
     }
