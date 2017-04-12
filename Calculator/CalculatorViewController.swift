@@ -77,6 +77,7 @@ class CalculatorViewController: UIViewController {
         } else if !display.text!.isEmpty {
             model.undoLastOperation()
             model.program = model.program
+            renderExpression.text = model.renderDescription
         }
     }
     
