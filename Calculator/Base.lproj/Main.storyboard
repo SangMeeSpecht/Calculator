@@ -38,6 +38,7 @@
                             <view contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lr3-Fb-cZL" customClass="GraphView" customModule="Calculator" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,6 +49,9 @@
                             <constraint firstItem="lr3-Fb-cZL" firstAttribute="leading" secondItem="nAq-o7-t8a" secondAttribute="leading" id="gdk-rC-19D"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="graphView" destination="lr3-Fb-cZL" id="a1J-zv-SLO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdd-kL-e78" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

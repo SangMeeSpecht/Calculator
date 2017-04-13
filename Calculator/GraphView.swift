@@ -8,10 +8,29 @@
 
 import UIKit
 
+@IBDesignable
 class GraphView: UIView {
-
-    override func draw(_ rect: CGRect) {
-
+    @IBInspectable
+    private var origin: CGPoint {
+        return CGPoint(x: bounds.midX, y: bounds.midY)
+    }
+    
+    @IBInspectable
+    var scale: CGFloat = 50.0 { didSet { setNeedsDisplay() } }
+    
+    override func draw(rect: CGRect) {
+        let graph = AxesDrawer()
+        graph.drawAxes(in: rect, origin: origin, pointsPerUnit: scale)
+    }
+    
+    func changeScale(_ recognizer: UIPinchGestureRecognizer) {
+        switch recognizer.state {
+        case .changed, .ended:
+            scale *= recognizer.scale
+            recognizer.scale = 1.0
+        default:
+            break
+        }
     }
 
     
