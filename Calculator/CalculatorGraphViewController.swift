@@ -13,11 +13,9 @@ class CalculatorGraphViewController: UIViewController {
     @IBOutlet weak var graphView: GraphView! {
         didSet {
             graphView.addGestureRecognizer(UIPinchGestureRecognizer(target: graphView, action: #selector(GraphView.changeScale(_:))))
+            
+            graphView.addGestureRecognizer(UIPanGestureRecognizer(target: graphView, action: #selector(GraphView.pan(_:))))
         }
-    }
-
-    @IBAction func pan(_ recognizer: UIPanGestureRecognizer) {
-
     }
 }
 

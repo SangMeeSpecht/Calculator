@@ -10,7 +10,6 @@ import UIKit
 
 @IBDesignable
 class GraphView: UIView {
-    @IBInspectable
     private var origin: CGPoint {
         get {
             return CGPoint(x: bounds.midX, y: bounds.midY)
@@ -34,6 +33,10 @@ class GraphView: UIView {
         default:
             break
         }
+    }
+    
+    func pan(_ recognizer: UIPanGestureRecognizer) {
+
     }
 
 }
