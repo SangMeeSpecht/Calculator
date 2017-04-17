@@ -12,14 +12,17 @@ import UIKit
 class GraphView: UIView {
     @IBInspectable
     private var origin: CGPoint {
-        return CGPoint(x: bounds.midX, y: bounds.midY)
+        get {
+            return CGPoint(x: bounds.midX, y: bounds.midY)
+        }
     }
+    
+    let graph = AxesDrawer()
     
     @IBInspectable
     var scale: CGFloat = 50.0 { didSet { setNeedsDisplay() } }
     
-    override func draw(rect: CGRect) {
-        let graph = AxesDrawer()
+    override func draw(_ rect: CGRect) {
         graph.drawAxes(in: rect, origin: origin, pointsPerUnit: scale)
     }
     
@@ -32,7 +35,5 @@ class GraphView: UIView {
             break
         }
     }
-
-    
 
 }

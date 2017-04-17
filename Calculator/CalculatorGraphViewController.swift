@@ -16,6 +16,8 @@ class CalculatorGraphViewController: UIViewController {
         }
     }
 
-}
+    @IBAction func pan(_ recognizer: UIPanGestureRecognizer) {
 
+    }
+}
 
