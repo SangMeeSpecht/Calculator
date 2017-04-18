@@ -15,7 +15,13 @@ class CalculatorGraphViewController: UIViewController {
             graphView.addGestureRecognizer(UIPinchGestureRecognizer(target: graphView, action: #selector(GraphView.changeScale(_:))))
             
             graphView.addGestureRecognizer(UIPanGestureRecognizer(target: graphView, action: #selector(GraphView.pan(_:))))
+            
+            let doubleTap = UITapGestureRecognizer(target: graphView, action: #selector(GraphView.moveOrigin(_:)))
+            doubleTap.numberOfTapsRequired = 2
+            graphView.addGestureRecognizer(doubleTap)
         }
     }
 }
+
+
 

@@ -25,27 +25,28 @@ class GraphView: UIView {
             setStartingOrigin()
             newGraph = false
         }
-        
         graph.drawAxes(in: rect, origin: origin, pointsPerUnit: scale)
     }
     
     func changeScale(_ recognizer: UIPinchGestureRecognizer) {
-        switch recognizer.state {
-        case .changed, .ended:
+        if recognizer.state == .ended || recognizer.state == .changed {
             scale *= recognizer.scale
             recognizer.scale = 1.0
-        default:
-            break
         }
     }
     
     func pan(_ recognizer: UIPanGestureRecognizer) {
         if recognizer.state == .ended || recognizer.state == .changed {
             let distancePanned = recognizer.translation(in: self)
-            
             setNewOrigin(withDistance: distancePanned)
-            
             recognizer.setTranslation(CGPoint.zero, in: self)
+        }
+    }
+    
+    func moveOrigin(_ recognizer: UITapGestureRecognizer) {
+        if recognizer.state == .ended {
+            let locationTapped = recognizer.location(in: self)
+            origin = locationTapped
         }
     }
 
