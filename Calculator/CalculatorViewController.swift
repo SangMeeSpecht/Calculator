@@ -27,14 +27,20 @@ class CalculatorViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            switch identifier {
+        var destinationVC = segue.destination
+        
+        if let navcon = destinationVC as? UINavigationController {
+            destinationVC = navcon.visibleViewController ?? destinationVC
+        }
+        
+        if let graphVC = destinationVC as? CalculatorGraphViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
                 case "Show Graph":
-                    if let graphVC = segue.destination as? CalculatorGraphViewController {
-                        graphVC.expression = model.descriptionCollection.joined()
-                        self.title = model.descriptionCollection.joined()
-                    }
+                    graphVC.expression = model.descriptionCollection.joined()
+                    graphVC.navigationItem.title = model.descriptionCollection.joined()
                 default: break
+                }
             }
         }
     }
