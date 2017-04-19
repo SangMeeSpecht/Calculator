@@ -28,6 +28,8 @@ class GraphView: UIView {
             newGraph = false
         }
         graph.drawAxes(in: rect, origin: origin, pointsPerUnit: scale)
+        
+        print("Drawing a function using this expression: \(expression)")
 
 //            let aPath = UIBezierPath()
 //        

@@ -31,8 +31,8 @@ class CalculatorViewController: UIViewController {
             switch identifier {
                 case "Show Graph":
                     if let graphVC = segue.destination as? CalculatorGraphViewController {
-                        graphVC.expression = "EXPRESSION"
-                        self.title = "[insert function]"
+                        graphVC.expression = model.descriptionCollection.joined()
+                        self.title = model.descriptionCollection.joined()
                     }
             default: break
             }
