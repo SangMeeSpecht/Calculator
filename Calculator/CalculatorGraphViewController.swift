@@ -9,7 +9,8 @@
 import UIKit
 
 class CalculatorGraphViewController: UIViewController {
-
+    var expression = ""
+    
     @IBOutlet weak var graphView: GraphView! {
         didSet {
             graphView.addGestureRecognizer(UIPinchGestureRecognizer(target: graphView, action: #selector(GraphView.changeScale(_:))))
@@ -19,7 +20,16 @@ class CalculatorGraphViewController: UIViewController {
             let doubleTap = UITapGestureRecognizer(target: graphView, action: #selector(GraphView.moveOrigin(_:)))
             doubleTap.numberOfTapsRequired = 2
             graphView.addGestureRecognizer(doubleTap)
+            
+            if expression != "" {
+                print("Expression passed from CalculatorVC to GraphVC: \(expression)")
+                addExpressionToGraph()
+            }
         }
+    }
+    
+    private func addExpressionToGraph() {
+        graphView.expression = expression
     }
 }
 

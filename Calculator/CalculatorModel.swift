@@ -217,7 +217,7 @@ class CalculatorModel {
     }
     
     private func noOperandEntered(symbol: String) -> Bool {
-        return symbol == "=" && binaryOps.contains(descriptionCollection.last!)
+        return symbol == "=" && descriptionCollection.count > 0 && binaryOps.contains(descriptionCollection.last!)
     }
     
     private func multipleEqualSymbols(symbol: String) -> Bool {

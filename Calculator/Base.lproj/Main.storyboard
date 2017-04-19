@@ -104,7 +104,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="85" height="58.5"/>
                                                         <color key="backgroundColor" red="0.069205258559999996" green="0.051988813219999999" blue="0.32867958660000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="Clear">
+                                                        <state key="normal" title="C">
                                                             <color key="titleColor" red="1" green="0.28438648950000001" blue="0.1429069945" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>

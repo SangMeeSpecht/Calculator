@@ -26,6 +26,19 @@ class CalculatorViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+                case "Show Graph":
+                    if let graphVC = segue.destination as? CalculatorGraphViewController {
+                        graphVC.expression = "EXPRESSION"
+                        self.title = "[insert function]"
+                    }
+            default: break
+            }
+        }
+    }
+    
     @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         appendDigits(digit)

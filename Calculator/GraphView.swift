@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class GraphView: UIView {
     @IBInspectable
-    private var origin = CGPoint(x: 0, y: 0){ didSet{ setNeedsDisplay() } }
+    private var origin: CGPoint = CGPoint(x: 0, y: 0) { didSet { setNeedsDisplay() } }
     
     @IBInspectable
     private var scale: CGFloat = 50.0 { didSet { setNeedsDisplay() } }
@@ -20,13 +20,29 @@ class GraphView: UIView {
     
     private let graph = AxesDrawer()
     
+    var expression = String()
+    
     override func draw(_ rect: CGRect) {
         if newGraph {
             setStartingOrigin()
             newGraph = false
         }
         graph.drawAxes(in: rect, origin: origin, pointsPerUnit: scale)
+
+//            let aPath = UIBezierPath()
+//        
+//            aPath.move(to: CGPoint(x: origin.x + (1 * scale), y: origin.y - (2 * scale)))
+//            aPath.addLine(to: CGPoint(x: 0, y: 400))
+//        
+//            aPath.close()
+//        
+//            //If you want to stroke it with a red color
+//            UIColor.red.set()
+//            aPath.stroke()
+//            //If you want to fill it as well 
+//            aPath.fill()
     }
+
     
     func changeScale(_ recognizer: UIPinchGestureRecognizer) {
         if recognizer.state == .ended || recognizer.state == .changed {
