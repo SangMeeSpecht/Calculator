@@ -30,7 +30,7 @@ private func factorial(number: Double) -> Double {
 class CalculatorModel {
     private var accumulator = 0.0
     private var description = ""
-    private var isPartialResult = true
+    var isPartialResult = true
     private var internalProgram = [AnyObject]()
     var variableValues = [String: Double]()
     

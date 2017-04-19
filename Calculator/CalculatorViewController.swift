@@ -34,9 +34,16 @@ class CalculatorViewController: UIViewController {
                         graphVC.expression = model.descriptionCollection.joined()
                         self.title = model.descriptionCollection.joined()
                     }
-            default: break
+                default: break
             }
         }
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "Show Graph" && model.isPartialResult {
+            return false
+        }
+        return true
     }
     
     @IBAction private func touchDigit(_ sender: UIButton) {

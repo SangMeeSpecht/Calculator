@@ -20,7 +20,7 @@ class GraphView: UIView {
     
     private let graph = AxesDrawer()
     
-    var expression = String()
+    var expression = "no function entered"
     
     override func draw(_ rect: CGRect) {
         if newGraph {
