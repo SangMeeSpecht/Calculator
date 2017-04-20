@@ -16,35 +16,24 @@ class GraphView: UIView {
     @IBInspectable
     private var scale: CGFloat = 50.0 { didSet { setNeedsDisplay() } }
     
-    private var newGraph = true
+    private var originSet = false
     
     private let graph = AxesDrawer()
     
-    var expression = "no function entered"
+    var function: ((Double) -> Double)? {
+        didSet { setNeedsDisplay() }
+    }
     
     override func draw(_ rect: CGRect) {
-        if newGraph {
+        if !originSet {
             setStartingOrigin()
-            newGraph = false
+            originSet = true
         }
+        
         graph.drawAxes(in: rect, origin: origin, pointsPerUnit: scale)
         
-        print("Drawing a function using this expression: \(expression)")
-
-//            let aPath = UIBezierPath()
-//        
-//            aPath.move(to: CGPoint(x: origin.x + (1 * scale), y: origin.y - (2 * scale)))
-//            aPath.addLine(to: CGPoint(x: 0, y: 400))
-//        
-//            aPath.close()
-//        
-//            //If you want to stroke it with a red color
-//            UIColor.red.set()
-//            aPath.stroke()
-//            //If you want to fill it as well 
-//            aPath.fill()
+        drawFunction()
     }
-
     
     func changeScale(_ recognizer: UIPinchGestureRecognizer) {
         if recognizer.state == .ended || recognizer.state == .changed {
@@ -67,6 +56,35 @@ class GraphView: UIView {
             origin = locationTapped
         }
     }
+    
+    private func drawFunction() {
+        let path = UIBezierPath()
+        var startOfPathDrawn = false
+        
+        if function != nil {
+            for x in 0...scaledMaxXValue() {
+                let pointX = CGFloat(x) / scale
+                
+                let xVal = Double((pointX - origin.x) / scale)
+                let yVal = function!(xVal)
+                
+                if noValueFoundFor(yVal: yVal) {
+                    startOfPathDrawn = false
+                    continue
+                }
+                
+                let pointY = origin.y - CGFloat(yVal) * scale
+                
+                if !startOfPathDrawn {
+                    path.move(to: CGPoint(x: pointX, y: pointY))
+                    startOfPathDrawn = true
+                } else {
+                    path.addLine(to: CGPoint(x: pointX, y: pointY))
+                }
+            }
+            path.stroke()
+        }
+    }
 
     private func setStartingOrigin() {
         origin.x = bounds.midX
@@ -75,5 +93,13 @@ class GraphView: UIView {
     
     private func setNewOrigin(withDistance distancePanned: CGPoint) {
         origin = CGPoint(x: distancePanned.x + origin.x, y: distancePanned.y + origin.y)
+    }
+    
+    private func noValueFoundFor(yVal: Double) -> Bool {
+        return !yVal.isZero && !yVal.isNormal
+    }
+    
+    private func scaledMaxXValue() -> Int {
+        return Int(bounds.width * scale)
     }
 }

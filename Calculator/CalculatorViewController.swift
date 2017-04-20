@@ -37,8 +37,8 @@ class CalculatorViewController: UIViewController {
             if let identifier = segue.identifier {
                 switch identifier {
                 case "Show Graph":
-                    graphVC.expression = model.descriptionCollection.joined()
                     graphVC.navigationItem.title = model.descriptionCollection.joined()
+                    graphVC.function = calculateCoordinateYWithCoordinate(x:)
                 default: break
                 }
             }
@@ -51,6 +51,13 @@ class CalculatorViewController: UIViewController {
         }
         return true
     }
+    
+    private func calculateCoordinateYWithCoordinate(x variable: Double) -> Double {
+        model.variableValues["M"] = variable
+        model.program = model.program
+        return model.result!
+    }
+    
     
     @IBAction private func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
@@ -84,20 +91,20 @@ class CalculatorViewController: UIViewController {
     }
     
 //    ->M
-    @IBAction func saveValue() {
+    @IBAction private func saveValue() {
         model.variableValues["M"] = displayValue
         userInMiddleOfTyping = false
         uploadSavedProgram()
     }
     
 //    M
-    @IBAction func getSavedValue() {
+    @IBAction private func getSavedValue() {
         model.setOperand(variableName: "M")
         userInMiddleOfTyping = false
         displayValue = model.result!
     }
     
-    @IBAction func undo() {
+    @IBAction private func undo() {
         if userInMiddleOfTyping && !display.text!.isEmpty {
             display.text! = display.text!.substring(to: display.text!.index(before: display.text!.endIndex))
         } else if !display.text!.isEmpty {
