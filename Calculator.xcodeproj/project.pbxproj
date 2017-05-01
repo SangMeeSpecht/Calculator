@@ -17,13 +17,13 @@
 		84520D761E8EAC0C00372E6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84520D741E8EAC0C00372E6A /* LaunchScreen.storyboard */; };
 		84520D9A1E8ED75D00372E6A /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84520D991E8ED75D00372E6A /* CalculatorModel.swift */; };
 		84B2A43A1EB7C86200B6516B /* CalculatorModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2A4391EB7C86200B6516B /* CalculatorModelSpec.swift */; };
-		84B2A43C1EB7C8E400B6516B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2A43B1EB7C8E400B6516B /* Alamofire.framework */; };
-		84B2A43F1EB7C8ED00B6516B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2A43D1EB7C8ED00B6516B /* Nimble.framework */; };
-		84B2A4401EB7C8ED00B6516B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2A43E1EB7C8ED00B6516B /* Quick.framework */; };
-		84B2A4411EB7C8F600B6516B /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B2A43B1EB7C8E400B6516B /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84B2A4421EB7C8FC00B6516B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B2A43D1EB7C8ED00B6516B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		84B2A4431EB7C8FC00B6516B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B2A43E1EB7C8ED00B6516B /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84B2A4451EB7C97C00B6516B /* CalculatorViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B2A4441EB7C97C00B6516B /* CalculatorViewControllerSpec.swift */; };
+		84B2A4501EB7CD2300B6516B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2A44F1EB7CD2300B6516B /* Alamofire.framework */; };
+		84B2A4531EB7CD2D00B6516B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2A4511EB7CD2D00B6516B /* Nimble.framework */; };
+		84B2A4541EB7CD2D00B6516B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B2A4521EB7CD2D00B6516B /* Quick.framework */; };
+		84B2A4551EB7CD3600B6516B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B2A4511EB7CD2D00B6516B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84B2A4561EB7CD3600B6516B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B2A4521EB7CD2D00B6516B /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84B2A4571EB7CD3C00B6516B /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B2A44F1EB7CD2300B6516B /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				84B2A4411EB7C8F600B6516B /* Alamofire.framework in CopyFiles */,
+				84B2A4571EB7CD3C00B6516B /* Alamofire.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,8 +60,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				84B2A4421EB7C8FC00B6516B /* Nimble.framework in CopyFiles */,
-				84B2A4431EB7C8FC00B6516B /* Quick.framework in CopyFiles */,
+				84B2A4551EB7CD3600B6516B /* Nimble.framework in CopyFiles */,
+				84B2A4561EB7CD3600B6516B /* Quick.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,10 +84,10 @@
 		84520D8D1E8EAC0C00372E6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84520D991E8ED75D00372E6A /* CalculatorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
 		84B2A4391EB7C86200B6516B /* CalculatorModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorModelSpec.swift; sourceTree = "<group>"; };
-		84B2A43B1EB7C8E400B6516B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		84B2A43D1EB7C8ED00B6516B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		84B2A43E1EB7C8ED00B6516B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		84B2A4441EB7C97C00B6516B /* CalculatorViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewControllerSpec.swift; sourceTree = "<group>"; };
+		84B2A44F1EB7CD2300B6516B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		84B2A4511EB7CD2D00B6516B /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		84B2A4521EB7CD2D00B6516B /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B2A43C1EB7C8E400B6516B /* Alamofire.framework in Frameworks */,
+				84B2A4501EB7CD2300B6516B /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,8 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B2A43F1EB7C8ED00B6516B /* Nimble.framework in Frameworks */,
-				84B2A4401EB7C8ED00B6516B /* Quick.framework in Frameworks */,
+				84B2A4531EB7CD2D00B6516B /* Nimble.framework in Frameworks */,
+				84B2A4541EB7CD2D00B6516B /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,9 +177,9 @@
 		84B2A42D1EB7C81100B6516B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84B2A43D1EB7C8ED00B6516B /* Nimble.framework */,
-				84B2A43E1EB7C8ED00B6516B /* Quick.framework */,
-				84B2A43B1EB7C8E400B6516B /* Alamofire.framework */,
+				84B2A4511EB7CD2D00B6516B /* Nimble.framework */,
+				84B2A4521EB7CD2D00B6516B /* Quick.framework */,
+				84B2A44F1EB7CD2300B6516B /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
