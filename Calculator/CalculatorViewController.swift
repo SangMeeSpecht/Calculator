@@ -9,7 +9,7 @@
 import UIKit
 
 class CalculatorViewController: UIViewController {
-    @IBOutlet private weak var display: UILabel!
+    @IBOutlet weak var display: UILabel!
     @IBOutlet weak var renderExpression: UILabel!
     
     private var model = CalculatorModel()
@@ -59,7 +59,7 @@ class CalculatorViewController: UIViewController {
     }
     
     
-    @IBAction private func touchDigit(_ sender: UIButton) {
+    @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         appendDigits(digit)
         userInMiddleOfTyping = true
@@ -83,7 +83,7 @@ class CalculatorViewController: UIViewController {
         }
     }
     
-    @IBAction private func clearDisplay(_ sender: UIButton) {
+    @IBAction func clearDisplay(_ sender: UIButton) {
         display.text = "0"
         renderExpression.text = " "
         model.resetCalculator()
